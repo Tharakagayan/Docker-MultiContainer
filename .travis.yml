@@ -5,7 +5,7 @@ services:
 before_install:
   - docker build -t gayan92tharaka/react-test -f ./client/Dockerfile.dev ./client
 
-script: 
+script:
   - docker run -e CI=true gayan92tharaka/react-test npm test -- -- coverage
 
 after_success:
@@ -14,9 +14,9 @@ after_success:
   - docker build -t gayan92tharaka/multi-server ./server
   - docker build -t gayan92tharaka/multi-worker ./worker
 #login to docker cli
-  -echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
 #pushing above images to dockerhub
   - docker push gayan92tharaka/multi-client
   - docker push gayan92tharaka/multi-nginx
   - docker push gayan92tharaka/multi-server
-  - docker push gayan92tharaka/multi-worker  
+  - docker push gayan92tharaka/multi-worker
